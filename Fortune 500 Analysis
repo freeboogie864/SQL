@@ -1,0 +1,27 @@
+SELECT *
+FROM fortune_companies;
+
+#finding companies with paid time off days that have more or less than 20 days
+SELECT company_name,
+CASE
+  WHEN paid_time_off_days > 20 THEN "Plenty of PTO"
+  WHEN paid_time_off_days = 20 THEN "PTO is at 20"
+  ELSE " Running out of days"
+END AS pto
+FROM fortune_companies;
+
+#Grouping companies with number of empolyees
+SELECT company_name, employees
+FROM fortune_companies
+GROUP BY company_name;
+
+#Using the AND statement to show more than one column
+SELECT company_name
+FROM fortune_companies
+WHERE paid_time_off_days >= 20
+AND healthcare_benefits = 1;
+
+#Finding the MAX revenue in a industry
+SELECT company_name, MAX(revenue)
+FROM fortune_companies
+WHERE industry = 'technology';
